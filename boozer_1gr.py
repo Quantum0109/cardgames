@@ -80,16 +80,29 @@ def new_round(user_deck, computer_deck, table):
 
     # определяем, чья карта больше
     print("\n----- результат раунда: -----")
-    if user_card["значение"] > computer_card["значение"]:
+    if user_card["значение"] == 6 and computer_card["значение"] == 14:
         print("игрок победил и забирает карты:")
         for card in table:
             user_deck.insert(0, card)
             print(f'{card["значение"]} {card["масть"]}, ', end="")
-    else:
+
+    elif computer_card["значение"] == 6 and user_card["значение"] == 14:
         print("компьютер победил и забирает карты:")
         for card in table:
             computer_deck.insert(0, card)
             print(f'{card["значение"]} {card["масть"]}, ', end="")
+
+    else: #нормальный подсчёт
+        if user_card["значение"] > computer_card["значение"]:
+            print("игрок победил и забирает карты:")
+            for card in table:
+                user_deck.insert(0, card)
+                print(f'{card["значение"]} {card["масть"]}, ', end="")
+        else:
+            print("компьютер победил и забирает карты:")
+            for card in table:
+                computer_deck.insert(0, card)
+                print(f'{card["значение"]} {card["масть"]}, ', end="")
 
     table.clear()
     input("\n\nENTER - продолжить")
